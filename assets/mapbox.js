@@ -11,10 +11,7 @@ afterMap.on('load', function() {
       "type": "geojson",
       "data": "https://cdn.rawgit.com/cth1011/mapbox/41dba205/SM%20data/jams-2018-10-06.geojson"
   });
-  afterMap.addSource('alerts', {
-      "type": "geojson",
-      "data": "https://cdn.rawgit.com/cth1011/mapbox/41dba205/SM%20data/alerts-2018-10-06.geojson"
-  });
+  
 
     afterMap.addLayer({
         "id": "jams-heat",
@@ -85,10 +82,6 @@ beforeMap.on('load', function() {
       "type": "geojson",
       "data": "https://cdn.rawgit.com/cth1011/mapbox/41dba205/SM%20data/jams-2018-09-29.geojson"
   });
-  var geojson = beforeMap.addSource('alerts-before', {
-      "type": "geojson",
-      "data": "https://cdn.rawgit.com/cth1011/mapbox/41dba205/SM%20data/alerts-2018-09-29.geojson"
-  });
 
     beforeMap.addLayer({
         "id": "jams-heat-before",
@@ -155,9 +148,7 @@ var map = new mapboxgl.Compare(beforeMap, afterMap, {
 document.getElementById('slider').addEventListener('input', function(e) {
   var hour = parseInt(e.target.value);
   // update the map
-  afterMap.setFilter('alerts-marker', ['==', ['number', ['get', 'MANILA_HOUR']], hour]);
   afterMap.setFilter('jams-heat', ['==', ['number', ['get', 'MANILA_HOUR']], hour]);
-  beforeMap.setFilter('alerts-marker-before', ['==', ['number', ['get', 'MANILA_HOUR']], hour]);
   beforeMap.setFilter('jams-heat-before', ['==', ['number', ['get', 'MANILA_HOUR']], hour]);
 
   // converting 0-23 hour to AMPM format
@@ -166,12 +157,4 @@ document.getElementById('slider').addEventListener('input', function(e) {
 
   // update text in the UI
   document.getElementById('active-hour').innerText = hour12 + ampm;
-});
-
-//click on tree to view dbh in a popup
-afterMap.on('click', 'alerts-marker', function (e) {
-  new mapboxgl.Popup()
-    .setLngLat(e.features[0].geometry.coordinates)
-    .setHTML('<b>Type:</b> '+ e.features[0].properties.type)
-    .addTo(map);
 });
