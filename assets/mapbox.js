@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY3RoMTAxMSIsImEiOiJjam1zeGxieXcwanVtM3dwOGM2M
 var afterMap = new mapboxgl.Map({
     container: 'after',
     style: 'mapbox://styles/mapbox/dark-v9',
-    center: [120.983811,14.55768],
+    center: [120.9819,14.5352],
     zoom: 14
 });
 afterMap.on('load', function() {
@@ -76,7 +76,7 @@ afterMap.on('load', function() {
 var beforeMap = new mapboxgl.Map({
     container: 'before',
     style: 'mapbox://styles/mapbox/light-v9',
-    center: [120.983811,14.55768],
+    center: [120.9819,14.5352],
     zoom: 14
 });
 beforeMap.on('load', function() {
