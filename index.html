@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Traffic Analysis</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/lib/parallax.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap.min.css">
+    <link rel="stylesheet" href="./design.css">
+    <link rel="shortcut icon" href="./assets/logo.png">
+
+</head>
+<body>
+
+<div class= "container-fluid navbar">
+  <div class='col-xl-6'>
+    <div class='row'><img class='tm-logo' src='./assets/tm.png'></div>
+    <div class="row navbar-brand">Traffic Dashboard</div>
+  </div>
+  <div class='col-xl-3'>
+
+  </div>
+  <div class='col-xl-3'>
+
+  </div>
+</div>
+
+  <div class='container-fluid '>
+    <div class='row'>
+      <div class='col-xl-4 left'>
+        <div class='row header'>
+          <div class='col-lg-2' style='padding-top:1vh;margin-left:1vh;'>Period</div>
+          <div class='col-lg-2'>
+              <form style='width:20vh;margin-right:5vh; margin-left:5vh'>
+                <select class="custom-select" >
+                  <option selected>Select Period</option>
+                  <option value="1">Yesterday</option>
+                  <option value="2">Last 7 Days</option>
+                  <option value="3">Last 28 Days</option>
+                  <option value="4">Last 90 Days</option>
+                  <option value="5">More preset ranges</option>
+                  <option value="6">Custom</option>
+                </select>
+              </form>
+          </div>
+          <div class='col-lg-1' style='padding-top:1vh;margin-left:16vh;'> vs. </div>
+          <div class='col-lg-3'>
+            <form>
+              <select class="custom-select" style='width: 20vh'>
+                <option selected>Select a Period</option>
+                <option value="1">Previous Day</option>
+                <option value="2">Previous Week</option>
+                <option value="3">Previous Month</option>
+                <option value="4">Previous 3 Months</option>
+                <option value="5">More preset ranges</option>
+                <option value="6">Custom</option>
+              </select>
+            </form>
+          </div>
+        </div>
+
+      <table class='table'>
+            <thead>
+          <tr>
+            <th id='metrics'>Metrics</th>
+            <th class='period1'>8/30-9/5</th>
+            <th class='period2'>8/30-8/23</th>
+            <th>Variance</th>
+          </tr>
+        </thead>
+        <tbody>
+      <tr>
+        <td id='metrics'><span id='metric'>Jams <i class="fas fa-info-circle"></i></span></td>
+        <td>30,000</td>
+        <td>200</td>
+        <td>15%</td>
+      </tr>
+      <tr>
+        <td id='metrics'><span id='metric'>Accidents <i class="fas fa-info-circle"></i></span></td>
+        <td>30,000</td>
+        <td>200</td>
+        <td>15%</td>
+      </tr>
+      <tr>
+        <td id='metrics'><span id='metric'>Hazards <i class="fas fa-info-circle"></i></span></td>
+        <td>30,000</td>
+        <td>200</td>
+        <td>15%</td>
+      </tr>
+      <tr>
+        <td id='metrics'><span id='metric'>Average Delay/Jam <i class="fas fa-info-circle"></i></span></td>
+        <td>30,000</td>
+        <td>200</td>
+        <td>15%</td>
+      </tr>
+      <tr>
+        <td id='metrics'><span id='metric'>Length/Jam <i class="fas fa-info-circle"></i></span></td>
+        <td>30,000</td>
+        <td>200</td>
+        <td>15%</td>
+      </tr>
+      <tr>
+        <td id='metrics'><span id='metric'>Delay per m <i class="fas fa-info-circle"></i></span></td>
+        <td>30,000</td>
+        <td>200</td>
+        <td>15%</td>
+      </tr>
+    </tbody>
+      </table>
+      </div>
+
+      <div class='col-xl-12 maps'>
+        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+        <div id='before' class='content'></div>
+
+        <div id='after' class='content'></div>
+        <div id='period1'>Sept 29, 2018 (Sat)</div>
+        <div id='period2'>Oct 06, 2018 (Sat)</div>
+        <a><img class='fullscreen' src='./assets/full.png'></a>
+        <div class='legend'>
+          Delay Time
+          <div class='row colors'></div>
+          <div class='row labels'>
+            <div class='label'>Light</div>
+            <div class='label'>Moderate</div>
+            <div class='label'>Heavy</div>
+          </div>
+        </div>
+        <div class='caption'>
+          <div class='session' id='sliderbar'>
+
+            <i class="fas fa-clock"></i> Hour: <label id='active-hour'>Select Time</label>
+            <div class='slidecontainer'><input id='slider' class='slider' type='range' min = '0' max = '23' step='1' value='12'/></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<script src="./assets/mapbox.js">
+</script>
+
+</body>
+</html>
