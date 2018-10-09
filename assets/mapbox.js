@@ -9,7 +9,7 @@ afterMap.on('load', function() {
 
   afterMap.addSource('jams', {
       "type": "geojson",
-      "data": "https://cdn.rawgit.com/cth1011/trafficanalysis/f285eb18/jams-2018-10-06.geojson"
+      "data": "https://cdn.jsdelivr.net/gh/cth1011/trafficanalysis@f285eb18590995b93e9b36326f32f4f8957a0ad7/jams-2018-10-06.geojson"
   });
   
 
@@ -80,7 +80,7 @@ beforeMap.on('load', function() {
 
   beforeMap.addSource('jams-before', {
       "type": "geojson",
-      "data": "https://cdn.rawgit.com/cth1011/trafficanalysis/f285eb18/jams-2018-09-29.geojson"
+      "data": "https://cdn.jsdelivr.net/gh/cth1011/trafficanalysis@f285eb18590995b93e9b36326f32f4f8957a0ad7/jams-2018-09-29.geojson"
   });
 
     beforeMap.addLayer({
