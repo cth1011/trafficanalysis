@@ -71,6 +71,7 @@ tr {
   width: 2.5vh;
   height: 2.5vh;
   opacity:0.5;
+  display:none;
 }
 #period1 {
   position: absolute;
